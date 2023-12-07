@@ -1,1 +1,1 @@
-# Terraform file for AWS
+# MyScripts
