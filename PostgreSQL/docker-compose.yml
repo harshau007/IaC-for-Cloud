@@ -9,30 +9,32 @@ services:
       POSTGRES_PASSWORD: root
       POSTGRES_ROOT_PASSWORD: root
     ports:
-      - 5432:5432 # Postgres on localhost:5432
+      - 5432 # Postgres on localhost:5432
     networks:
       - postgres
     volumes:
-      - pgdata:/home/harsh/Documents/PostgresDB
+      - pgdata:$HOME/Documents/PostgresDB
     labels:
       - createdBy=DevBox
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin4
     ports:
-      - "8888:80" # PgAdmin on localhost:8888
+      - 80 # PgAdmin on localhost:8888
     environment:
       PGADMIN_DEFAULT_EMAIL: root@root.com
       PGADMIN_DEFAULT_PASSWORD: root
     networks:
       - postgres
     volumes:
-      - pgadmin-data:/home/harsh/Documents/PostgresDB
+      - pgadmin-data:$HOME/Documents/PostgresDB
     labels:
       - createdBy=DevBox
 networks:
   postgres:
     driver: bridge
+    labels:
+      - createdBy=DevBox
 volumes:
   pgdata:
   pgadmin-data:
